@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom-server.html
 ---
 
-The `ReactDOMServer` object enables you to render components to static markup. Typically, it's used on a Node server:
+Objekt `ReactDOMServer` pozwala na renderowanie komponentów do oznaczeń statycznych (ang. *static markup*). Zazwyczaj jest używany na serwerze Node:
 
 ```js
 // ES modules
@@ -15,21 +15,21 @@ import ReactDOMServer from 'react-dom/server';
 var ReactDOMServer = require('react-dom/server');
 ```
 
-## Overview {#overview}
+## Informacje ogólne {#overview}
 
-The following methods can be used in both the server and browser environments:
+Następujące metody mogą być używane zarówno w środowisku serwera, jak i przeglądarki:
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)
 
-These additional methods depend on a package (`stream`) that is **only available on the server**, and won't work in the browser.
+Te dodatkowe metody są zależne od pakietu (`stream`), który **jest dostępny tylko na serwerze** i nie zadziała w przeglądarce.
 
 - [`renderToNodeStream()`](#rendertonodestream)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
 * * *
 
-## Reference {#reference}
+## Dokumentacja {#reference}
 
 ### `renderToString()` {#rendertostring}
 
@@ -37,9 +37,9 @@ These additional methods depend on a package (`stream`) that is **only available
 ReactDOMServer.renderToString(element)
 ```
 
-Render a React element to its initial HTML. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+Metoda zamienia Reactowy element na jego początkowy HTML. Zwraca ciąg znaków HTML. Możesz użyć tej metody do generowania HTML na serwerze i wysłania tych znaczników w początkowym żądaniu do szybszego ładowania się stron oraz umożliwienia wyszukiwarkom śledzenia Twoich stron w celach SEO.
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+Gdy wywołasz [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) na węźle, który już ma znacznik wyrenderowany na serwerze, React go zachowa i doda tylko obsługę zdarzeń, pozwalając na bardzo wydajne pierwsze załadowanie strony.
 
 * * *
 
@@ -49,9 +49,9 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-Similar to [`renderToString`](#rendertostring), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+Podobne do [`renderToString`](#rendertostring), poza tym, że nie tworzy dodatkowych atrybutów DOM, których React używa wewnętrznie, takich jak `data-reactroot`. Jest to przydatne, gdy chcesz użyć Reacta jako prosty generator statycznych stron, a usunięcie dodatkowych atrybutów pozwoli na zaoszczędzenie kilku bajtów.
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+Gdy planujesz użyć Reacta po stronie klienta do tworzenia interaktywnych znaczników, nie używaj tej metody. Zamiast tego, użyj [`renderToString`](#rendertostring) na serwerze oraz [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) po stronie klienta.
 
 * * *
 
@@ -61,7 +61,7 @@ If you plan to use React on the client to make the markup interactive, do not us
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-Render a React element to its initial HTML. Returns a [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+Metoda zamienia Reactowy element na jego początkowy HTML. Zwraca [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams), którego danymi wyjściowymi jest ciąg znaków HTML. Dane wyjściowe HTML tego streama są dokładnie takie jakie by zwrócił [`ReactDOMServer.renderToString`](#rendertostring). Możesz użyć tej metody do generowania HTML na serwerze i wysłania tych znaczników w początkowym żądaniu do szybszego ładowania się stron oraz umożliwienia wyszukiwarkom śledzenia Twoich stron w celach SEO.
 
 If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
 
